@@ -1,0 +1,7 @@
+<div class="<%= message.body == "blue" ? "bg-blue-600 text-white ml-auto text-right": "bg-gray-200 text-black mr-auto text-left" %> w-fit h-fit px-2.5 py-1 rounded-[6px] max-w-[95%]">
+    <% unless message.room.private %>
+        <p class="text-[10px]"><%= message.user.email %></p>
+    <% end %>
+
+    <%= message.body %>
+</div>
