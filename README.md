@@ -1,24 +1,6 @@
-# README
+Rails chat application
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Things I want to do:
+- [ ] instead of showing all user accounts, allow the user to "find" the user they wish to talk to
+- [ ] tidy up code
+- [ ] add comments to code
