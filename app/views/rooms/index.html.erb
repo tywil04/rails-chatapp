@@ -16,7 +16,7 @@
       <section class="px-2 space-y-0.5 dark:text-white">
         <b class="mx-1">Users</b>
         <%= turbo_stream_from "users", class: "!p-0 !p-0 !m-0" %>
-        <div id="users">
+        <div id="users" class="mx-1">
           <%= render @users %>
         </div>
       </section>
@@ -31,7 +31,7 @@
       <section class="px-2 space-y-0.5 dark:text-white">
         <b class="mx-1">Rooms</b>
         <%= turbo_stream_from "rooms" %>
-        <div id="rooms">
+        <div id="rooms" class="mx-1">
           <%= render @rooms %>
         </div>
       </section>
