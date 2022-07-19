@@ -16,8 +16,12 @@
   @apply !bg-blue-600 !text-white !ml-auto !text-right !opacity-100
 }
 
+.current_user_delivered_message_bubble {
+  @apply !bg-green-500 !text-white !ml-auto !text-right !opacity-100
+}
+
 .message_bubble {
-  @apply bg-gray-200 text-black mr-auto text-left dark:bg-gray-800 dark:text-white !opacity-100
+  @apply bg-gray-200 text-black mr-auto !text-left dark:bg-gray-800 dark:text-white !opacity-100
 }
 
 .button {

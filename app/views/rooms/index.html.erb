@@ -1,10 +1,10 @@
 <div data-controller="theme" class="flex flex-row w-full h-full dark:bg-gray-900 duration-100">
-  <div class="flex flex-col h-full w-fit max-w-[30%] text-sm bg-gray-100 pt-4 space-y-3 border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+  <div class="flex flex-col h-full min-w-[20%] w-[20%] max-w-[20%] text-sm bg-gray-100 pt-4 space-y-3 border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700">
     <div class="px-3 flex flex-col space-y-2">
       <b class="dark:text-white">Hello, <%= current_user.name %></b>
 
-      <div class="flex flex-row space-x-2">
-        <button data-action="click->theme#toggle" data-theme-target="button" class="button darker truncate">Theme Selector</button>
+      <div class="flex flex-row justify-between">
+        <button data-action="click->theme#toggle" data-theme-target="button" class="button darker truncate">Dark Mode</button>
         <%= link_to "Edit account", edit_user_registration_path, class: "button darker truncate" %>
         <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "button darker truncate" %>
       </div>
@@ -44,7 +44,7 @@
 
     <section class="!mt-auto">
       <%= form_with(model: Room.new, remote: true, class: "flex flex-row p-3", data: { controller: "form-reset", action: "turbo:submit-end->form-reset#reset" }) do |form| %>
-        <%= form.text_field :name, autocomplete: "off", placeholder: "Room name", class: "input darker mr-1" %>
+        <%= form.text_field :name, autocomplete: "off", placeholder: "Room name", class: "input darker mr-3" %>
         <%= form.submit "New room", data: { disable_with: false }, class: "button darker" %>
       <% end %>
     </section>
@@ -52,14 +52,13 @@
   
   <% if @single_room %>
     <div class="flex flex-col w-full h-full text-sm overflow-hidden" id="single_room">
-      <div class="p-3 dark:text-white border-b border-gray-200 dark:border-gray-700">
-        <b>
-          <%= @user ? @user.name: @single_room.name %>
-        </b>
+      <div class="flex flex-row p-3 dark:text-white border-b border-gray-200 dark:border-gray-700">
+        <b class="mr-auto"><%= @user ? @user.name: @single_room.name %></b>
+        <p class="ml-auto">0 Messages</p>
       </div>
 
       <%= turbo_stream_from @single_room %>
-      <div id="messages" class="mt-auto overflow-auto p-3 space-y-1" data-controller="scroll" data-scroll-target="messages">
+      <div id="messages" class="mt-auto overflow-y-auto overflow-x-hidden p-3 space-y-1.5" data-controller="messages" data-messages-target="messages">
         <%= render @messages, user: current_user %>
       </div>
 

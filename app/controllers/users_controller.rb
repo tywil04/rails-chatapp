@@ -12,6 +12,14 @@ class UsersController < ApplicationController
             @single_room = Room.where(name: @room_name).first || Room.create_private_room([@user, current_user], @room_name)
             @message = Message.new
             @messages = @single_room.messages.order(created_at: :asc)
+
+            if @single_room.private == true
+                @messages.each do |message|
+                    if message.user != current_user
+                        message.update(state: "seen");
+                    end
+                end
+            end
         end
 
         render "rooms/index"
