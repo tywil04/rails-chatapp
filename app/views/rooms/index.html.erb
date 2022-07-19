@@ -4,7 +4,7 @@
       <b class="dark:text-white">Hello, <%= current_user.name %></b>
 
       <div class="flex flex-row space-x-2">
-        <button data-action="click->theme#toggle" data-theme-target="button" class="button darker"></button>
+        <button data-action="click->theme#toggle" data-theme-target="button" class="button darker">Theme Selector</button>
         <%= link_to "Edit account", edit_user_registration_path, class: "button darker" %>
         <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "button darker" %>
       </div>

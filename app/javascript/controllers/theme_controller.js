@@ -17,6 +17,6 @@ export default class extends Controller {
     }
 
     set_text() {
-        this.buttonTarget.innerText = document.documentElement.classList.contains("dark") ? "To Light Mode": "To Dark Mode";
+        this.buttonTarget.innerText = document.documentElement.classList.contains("dark") ? "Light Mode": "Dark Mode";
     }
 }
