@@ -38,11 +38,11 @@
 
       <%= turbo_stream_from @single_room %>
       <div id="messages" class="mt-auto overflow-auto p-2 space-y-1">
-        <%= render @messages %>
+        <%= render @messages, user: current_user %>
       </div>
 
       <%= form_with(model: [@single_room, @message], remote: true, class: "flex flex-row w-full bottom-0 p-2") do |form| %> 
-        <%= form.text_field :body, id: "chat-text", autocomplete: "off", placeholder: "Message '" + @single_room.name + "'", class: " rounded-tl-[6px] rounded-bl-[6px] flex flex-grow bg-gray-100 !border !border-r-0 border-gray-200 px-2 py-1 text-sm focus:outline-none focus:outline-0 focus:ring-0 focus:!border-gray-200" %>
+        <%= form.text_field :body, id: "chat-text", autocomplete: "off", placeholder: "Message '#{@user ? @user.email: @single_room.name}'", class: " rounded-tl-[6px] rounded-bl-[6px] flex flex-grow bg-gray-100 !border !border-r-0 border-gray-200 px-2 py-1 text-sm focus:outline-none focus:outline-0 focus:ring-0 focus:!border-gray-200" %>
         <%= form.submit "Send message", data: { disable_with: false }, class: "rounded-tr-[6px] rounded-br-[6px] flex w-fit bg-blue-600 border border-blue-700 text-white px-2 py-1 hover:bg-blue-700 hover:border-blue-800  active:bg-blue-800 active:border-blue-900 cursor-pointer duration-100" %>
       <% end %>
     </div>

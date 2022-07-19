@@ -23,4 +23,11 @@ class RoomsController < ApplicationController
     
     render "index"
   end
+
+  def destroy
+    Message.where(room_id: params[:id]).each do |message|
+      message.delete()
+    end
+    Room.destroy(params[:id])
+  end
 end

@@ -1,3 +1,7 @@
-<div>
+<div id="room_<%= room.id %>" class="flex flex-row w-full group">
     <%= link_to room.name, room %>
+
+    <div class="ml-auto">
+        <%= button_to "Delete Room", room, method: :delete, class: "opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto duration-100 text-red-600" %>
+    </div>
 </div>

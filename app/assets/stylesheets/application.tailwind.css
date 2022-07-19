@@ -11,3 +11,11 @@
 }
 
 */
+
+.current_user_message_bubble {
+  @apply !bg-blue-600 !text-white !ml-auto !text-right
+}
+
+.message_bubble {
+  @apply bg-gray-200 text-black mr-auto text-left
+}

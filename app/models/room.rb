@@ -5,13 +5,18 @@ class Room < ApplicationRecord
         where(private: false)
     }
 
-    after_create_commit { broadcast_if_public }
+    after_create_commit { append_if_public }
+    after_destroy_commit { destroy_if_public }
 
     has_many :messages
     has_many :participants, dependent: :destroy
 
-    def broadcast_if_public
+    def append_if_public
         broadcast_append_to "rooms" unless self.private
+    end
+
+    def destroy_if_public
+        broadcast_remove_to "rooms" unless self.private
     end
 
     def self.create_private_room(users, room_name)
