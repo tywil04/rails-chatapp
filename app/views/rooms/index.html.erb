@@ -1,10 +1,17 @@
-<div class="flex flex-row w-full h-full">
-  <div class="flex flex-col h-full w-fit max-w-[30%] text-sm bg-gray-100 pt-4 space-y-3 border-r border-gray-200">
-    <b class="px-4">Hello, <%= current_user.email %></b>
+<div data-controller="theme" class="flex flex-row w-full h-full dark:bg-gray-900">
+  <div class="flex flex-col h-full w-fit max-w-[30%] text-sm bg-gray-100 pt-4 space-y-3 border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+    <div class="px-4 flex flex-col space-y-2">
+      <b class="dark:text-white">Hello, <%= current_user.email %></b>
 
-    <hr class="mx-4"/>
+      <div class="flex flex-row space-x-2">
+        <button data-action="click->theme#toggle" data-theme-target="button" class="dark:text-white dark:bg-gray-700 dark:border-gray-600 dark:hover:bg-gray-600 text-sm rounded-[6px] flex w-fit bg-gray-200 border border-gray-300 text-black px-1.5 py-0.5 hover:bg-gray-300  cursor-pointer duration-10"></button>
+        <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "dark:text-white dark:bg-gray-700 dark:border-gray-600 dark:hover:bg-gray-600 text-sm rounded-[6px] flex w-fit bg-gray-200 border border-gray-300 text-black px-1.5 py-0.5 hover:bg-gray-300 cursor-pointer duration-100" %>
+      </div>
+    </div>
+
+    <hr class="mx-4 dark:border-gray-700"/>
       
-    <section class="px-4">
+    <section class="px-4 dark:text-white">
       <b>Users</b>
       <%= turbo_stream_from "users", class: "!p-0 !p-0 !m-0" %>
       <div id="users">
@@ -12,7 +19,7 @@
       </div>
     </section>
 
-    <section class="px-4">
+    <section class="px-4 dark:text-white">
       <b>Rooms</b>
       <%= turbo_stream_from "rooms" %>
       <div id="rooms">
@@ -21,28 +28,28 @@
     </section>
 
     <section class="!mt-auto">
-      <%= form_with(model: @room, remote: true, class: "flex flex-row p-2") do |form| %>
-        <%= form.text_field :name, autocomplete: "off", placeholder: "Room name", class: "rounded-tl-[6px] rounded-bl-[6px] flex flex-grow min-w-0 max-w-full bg-gray-200 !border  !border-r-0 border-gray-300 px-2 py-1 text-sm focus:outline-none focus:outline-0 focus:ring-0 focus:!border-gray-300" %>
-        <%= form.submit "New room", data: { disable_with: false }, class: "rounded-tr-[6px] rounded-br-[6px] flex w-fit bg-gray-200 border border-gray-300 text-black px-2 py-1 hover:bg-gray-300  cursor-pointer duration-100" %>
+      <%= form_with(model: @room, remote: true, class: "flex flex-row p-2", data: { controller: "form-reset", action: "turbo:submit-end->form-reset#reset" }) do |form| %>
+        <%= form.text_field :name, autocomplete: "off", placeholder: "Room name", class: "rounded-tl-[6px] rounded-bl-[6px] flex flex-grow bg-gray-100 dark:bg-gray-800 !border !border-r-0 border-gray-200 dark:border-gray-700 dark:text-white px-2 py-1 text-sm focus:outline-none focus:outline-0 focus:ring-0 focus:!border-gray-200 dark:focus:!border-gray-700" %>
+        <%= form.submit "New room", data: { disable_with: false }, class: "rounded-tr-[6px] rounded-br-[6px] dark:text-white dark:bg-gray-700 dark:border-gray-600 dark:hover:bg-gray-600 text-sm flex w-fit bg-gray-200 border border-gray-300 text-black px-1.5 py-0.5 hover:bg-gray-300 cursor-pointer duration-100" %>
       <% end %>
     </section>
   </div>
   
   <% if @single_room %>
     <div class="flex flex-col w-full h-full text-sm overflow-hidden" id="single_room">
-      <div class="p-4">
+      <div class="p-4 dark:text-white">
         <b>
           <%= @user ? @user.email: @single_room.name %>
         </b>
       </div>
 
       <%= turbo_stream_from @single_room %>
-      <div id="messages" class="mt-auto overflow-auto p-2 space-y-1">
+      <div id="messages" class="mt-auto overflow-auto p-2 space-y-1" data-controller="scroll" data-scroll-target="messages">
         <%= render @messages, user: current_user %>
       </div>
 
-      <%= form_with(model: [@single_room, @message], remote: true, class: "flex flex-row w-full bottom-0 p-2") do |form| %> 
-        <%= form.text_field :body, id: "chat-text", autocomplete: "off", placeholder: "Message '#{@user ? @user.email: @single_room.name}'", class: " rounded-tl-[6px] rounded-bl-[6px] flex flex-grow bg-gray-100 !border !border-r-0 border-gray-200 px-2 py-1 text-sm focus:outline-none focus:outline-0 focus:ring-0 focus:!border-gray-200" %>
+      <%= form_with(model: [@single_room, @message], remote: true, class: "flex flex-row w-full bottom-0 p-2", data: { controller: "form-reset", action: "turbo:submit-end->form-reset#reset" }) do |form| %> 
+        <%= form.text_field :body, id: "chat-text", autocomplete: "off", placeholder: "Message '#{@user ? @user.email: @single_room.name}'", class: " rounded-tl-[6px] rounded-bl-[6px] flex flex-grow bg-gray-100 dark:bg-gray-800 !border !border-r-0 border-gray-200 dark:border-gray-700 dark:text-white px-2 py-1 text-sm focus:outline-none focus:outline-0 focus:ring-0 focus:!border-gray-200 dark:focus:!border-gray-700" %>
         <%= form.submit "Send message", data: { disable_with: false }, class: "rounded-tr-[6px] rounded-br-[6px] flex w-fit bg-blue-600 border border-blue-700 text-white px-2 py-1 hover:bg-blue-700 hover:border-blue-800  active:bg-blue-800 active:border-blue-900 cursor-pointer duration-100" %>
       <% end %>
     </div>

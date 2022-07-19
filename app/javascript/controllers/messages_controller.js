@@ -7,8 +7,6 @@ export default class extends Controller {
     static targets = ["message"]
 
     initialize() {
-        console.log(document.cookie);
-
         document.cookie.split("; ").forEach(cookiePart => {
             const [cookieKey, cookieValue] = cookiePart.split("=");
 

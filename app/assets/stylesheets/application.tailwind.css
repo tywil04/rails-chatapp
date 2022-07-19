@@ -17,5 +17,5 @@
 }
 
 .message_bubble {
-  @apply bg-gray-200 text-black mr-auto text-left
+  @apply bg-gray-200 text-black mr-auto text-left dark:bg-gray-800 dark:text-white
 }
