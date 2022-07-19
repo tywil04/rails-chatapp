@@ -3,9 +3,10 @@ Rails.application.routes.draw do
     resources :messages
   end
   
+  devise_for :users, controllers: { registrations: "users/registrations" }
+
   get 'pages/home'
-  devise_for :users
   get "user/:id", to: "users#show", as: "user"
 
-  root "pages#home"
+  root "rooms#index"
 end

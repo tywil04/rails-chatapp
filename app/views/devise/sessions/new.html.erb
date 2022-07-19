@@ -1,0 +1,33 @@
+<div class="px-[30%] py-28 flex flex-col flex-grow text-sm space-y-4 w-full">
+  <div>
+    <h1 class="mr-auto font-bold text-2xl my-1 dark:text-white pb-1 px-1">
+      Account log in.
+    </h1>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |form| %>
+      <div class="flex flex-col space-y-1 p-1">
+        <%= form.email_field :email, autocomplete: "email", autofocus: true, placeholder: "Email", class: "input" %>
+        <%= form.password_field :password, autocomplete: "current-password", placeholder: "Password", class: "input" %>
+      </div>
+
+      <div class="flex flex-row mt-2 px-1">
+        <div class="mr-auto flex flex-row space-x-2">
+          <div class="flex flex-col justify-center">
+            <%= form.check_box :remember_me, class: "rounded-[6px] duration-100 bg-gray-100 border-gray-200 dark:bg-gray-800 dark:border-gray-700 cursor-pointer " %>
+          </div>
+
+          <div class="flex flex-col justify-center">
+            <%= form.label "Stay logged in", class: "dark:text-white" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-row mt-3 px-1">
+        <%= link_to "Don't have an account? Sign up!", new_user_registration_path, class: "truncate mr-auto text-sm my-0.5 dark:text-white h-full flex flex-col hover:text-blue-700 active:text-blue-800 dark:hover:text-blue-500 dark:active:text-blue-600 cursor-pointer duration-100" %>
+        <%= form.submit "Log in", class: "ml-auto button blue" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+

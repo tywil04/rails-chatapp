@@ -1,6 +1,6 @@
-<div data-controller="messages" data-messages-email-value="<%= message.user.email %>" data-messages-target="message" class="w-fit h-fit px-2.5 py-1 rounded-[6px] max-w-[95%]">
+<div data-controller="messages" data-messages-email-value="<%= message.user.email %>" data-messages-target="message" class="opacity-0 group w-fit h-fit px-2.5 py-1 rounded-[6px] max-w-[95%]">
     <% unless message.room.private %>
-        <p class="text-[10px]"><%= message.user.email %></p>
+        <p class="text-[10px] duration-100"><%= message.user.name %> (<%= message.user.email %>)</p>
     <% end %>
 
     <%= message.body %>

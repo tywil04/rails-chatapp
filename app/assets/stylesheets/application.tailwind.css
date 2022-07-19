@@ -13,9 +13,29 @@
 */
 
 .current_user_message_bubble {
-  @apply !bg-blue-600 !text-white !ml-auto !text-right
+  @apply !bg-blue-600 !text-white !ml-auto !text-right !opacity-100
 }
 
 .message_bubble {
-  @apply bg-gray-200 text-black mr-auto text-left dark:bg-gray-800 dark:text-white
+  @apply bg-gray-200 text-black mr-auto text-left dark:bg-gray-800 dark:text-white !opacity-100
+}
+
+.button {
+  @apply cursor-pointer rounded-[6px] py-0.5 px-1.5 text-sm duration-100 bg-gray-100 hover:bg-gray-200/75 text-black dark:bg-gray-800 dark:hover:bg-gray-700/75 dark:text-white
+}
+
+.button.darker {
+  @apply !bg-gray-200 hover:!bg-gray-300/75 !text-black dark:!bg-gray-700 dark:hover:!bg-gray-600/75 dark:!text-white
+}
+
+.button.blue {
+  @apply !bg-blue-600 hover:!bg-blue-700/75 !text-white dark:!bg-blue-600 dark:hover:!bg-blue-700/75 dark:!text-white
+}
+
+.input {
+  @apply w-full h-fit appearance-none cursor-auto rounded-[6px] py-1 px-2 text-sm border-0 duration-100 focus:!border-0 focus:!ring-0 focus:!outline-none focus:!outline-0 placeholder-gray-500 bg-gray-100 text-black dark:placeholder-gray-400 dark:bg-gray-800 dark:text-white
+}
+
+.input.darker {
+  @apply !bg-gray-200 !text-black dark:!bg-gray-700 dark:!text-white !placeholder-gray-400
 }
