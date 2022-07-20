@@ -1,4 +1,4 @@
-<div data-author="<%= message.user.email %>" data-delivered="<%= message.room.private ? message.state == "delivered": "" %>" id="<%= dom_id message %>" class="flex flex-col overflow-hidden whitespace-normal break-words opacity-0 group w-fit h-fit py-1.5 px-2.5 space-y-1/4 rounded-[6px] max-w-[95%]">
+<div data-author="<%= message.user.email %>" id="<%= dom_id message %>" class="flex flex-col overflow-hidden whitespace-normal break-words opacity-0 group w-fit h-fit py-1.5 px-2.5 space-y-1/4 rounded-[6px] max-w-[95%]">
     <% unless message.room.private %>
         <p class="text-xs leading-normal"><b><%= message.user.name %></b> (<%= message.user.email %>)</p>
     <% end %>
