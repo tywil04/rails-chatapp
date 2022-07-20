@@ -27,8 +27,7 @@ export default class extends Controller {
         console.log(this.messages.childElementCount)
 
         for (var i = 0; i < this.messages.childElementCount; i++) {
-            const ownerClass = this.messages.children[i].dataset.delivered == "true" ? "current_user_delivered_message_bubble": "current_user_message_bubble"
-            const [add, remove] = this.email == this.messages.children[i].dataset.author ? [ownerClass, "message_bubble"]: ["message_bubble", ownerClass];
+            const [add, remove] = this.email == this.messages.children[i].dataset.author ? ["current_user_message_bubble", "message_bubble"]: ["message_bubble", "current_user_message_bubble"];
             this.messages.children[i].classList.add(add);
             this.messages.children[i].classList.remove(remove);
         }
@@ -42,8 +41,7 @@ export default class extends Controller {
         this.messages = document.querySelector("#messages");
         this.messages.scroll({ top: messages.scrollHeight });
 
-        const ownerClass = event.target.dataset.delivered == "true" ? "current_user_delivered_message_bubble": "current_user_message_bubble"
-        const [add, remove] = email == event.target.dataset.author ? [ownerClass, "message_bubble"]: ["message_bubble", ownerClass];
+        const [add, remove] = email == event.target.dataset.author ? ["current_user_message_bubble", "message_bubble"]: ["message_bubble", "current_user_message_bubble"];
         event.target.classList.add(add);
         event.target.classList.remove(remove);
     }
